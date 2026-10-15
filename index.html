@@ -196,6 +196,35 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 .picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
 .picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
 .picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
+.graphs { position: relative; margin: 2rem 0; }
+.graphs .panel { margin-bottom: 1.5rem; }
+.graphs h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.graphs svg { display: block; width: 100%; height: auto; background: var(--figure-bg); border: 1px solid var(--grid); border-radius: 4px; }
+.graphs line.same { stroke: #3F7F7A; stroke-width: 0.8; stroke-opacity: 0.35; }
+.graphs line.bridge { stroke: #241E16; stroke-width: 0.9; stroke-opacity: 0.45; }
+.graphs svg.featured line.bridge { stroke-opacity: 0.14; }
+.graphs svg.featured line.same { stroke-opacity: 0.18; }
+.graphs line.hot { stroke: #9A4B3C; stroke-width: 3.2; stroke-opacity: 0.95; }
+.graphs line.hot.swiss { stroke: #3F5E7A; }
+.graphs line.hot.league { stroke: #3F7F7A; stroke-width: 1.1; stroke-opacity: 0.9; }
+.graphs svg.featured .node.mate image, .graphs svg.featured .node.mate .dot { opacity: 0.85; }
+.graphs .node { cursor: pointer; }
+.graphs .node .halo { fill: #FBF7F0; stroke: none; }
+.graphs .node .dot { fill: #B8AC97; }
+.graphs svg.featured .node image, .graphs svg.featured .node .dot { opacity: 0.42; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot, .graphs svg.featured .node.opp image, .graphs svg.featured .node.opp .dot { opacity: 1; }
+.graphs .labels { pointer-events: none; }
+.graphs .halo-big { fill: #FBF7F0; stroke: #9A4B3C; stroke-width: 2; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot { opacity: 1; }
+.graphs .node.opp .halo { stroke: #9A4B3C; stroke-width: 1.5; }
+.graphs text.label { font-family: var(--sans); font-size: 13px; fill: #241E16; text-anchor: middle; paint-order: stroke; stroke: #FBF7F0; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.graphs text.label.me { font-size: 16px; font-weight: 600; }
+.graphs .tip { position: absolute; display: none; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 0.85rem; padding: 0.3rem 0.55rem; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.graphs .legend { font-size: 0.9rem; color: var(--muted); margin-top: -0.6rem; }
+.picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.6rem 0 1.2rem; font-size: 0.95rem; }
+.picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
+.picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
+.picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -258,7 +287,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 
   <div class="col">
     <h2>Why this beats everyone for themselves</h2>
-    <p><strong>It measures the sport better, and most of the gain comes from one weekend.</strong> The mean gap standard error falls by about half a point in every season and the power-versus-Group of Five standard error, the one the real schedule had been losing for twenty years, by a quarter. Simulating seasons from each schedule and recovering ratings the way a system would, with last season's SP+ as the prior, the calendar's error on conference gaps is lower than the real schedule's at every point of the season on the seasons it was never tuned on: 2.8 against 3.2 points at the end of 2021 to 2024, 2.2 against 2.4 in 2025. The early games give the first step, at week 4. The Swiss week gives the second: in one weekend the conference-gap error drops from 3.1 to 2.8 points, because fifty-eight games between teams the season has shown to be peers, across conference lines, land all at once. Pairing on noisy mid-season ratings turns out to beat pairing on the truth, since the noise sends more of those games across the power/Group of Five line.</p>
+    <p><strong>It measures the sport better, and the whole gain comes from one weekend.</strong> The mean gap standard error falls by about half a point in every season and the power-versus-Group of Five standard error, the one the real schedule had been losing for twenty years, by a quarter. Simulating seasons from each schedule and recovering ratings the way a system would, with last season's SP+ as the prior and the real schedule keeping its FCS game as an observation against an opponent of known average strength, the calendar's error on conference gaps is lower than the real schedule's at the end of the seasons it was never tuned on: 2.8 against 3.0 points in 2021 to 2024, 2.2 against 2.3 in 2025, and the tier gap 1.5 against 1.9. The margin is modest, and it is honest: through week 12 the real schedule is as good or better, because an FCS game is an early observation too and the calendar's early cross-tier games are no better an instrument than the buy games they replace. The Swiss week is the difference: in one weekend the conference-gap error drops from 3.1 to 2.8 points, because fifty-eight games between teams the season has shown to be peers, across conference lines, land all at once. Pairing on noisy mid-season ratings turns out to beat pairing on the truth, since the noise sends more of those games across the power/Group of Five line.</p>
     <p><strong>It doubles the marquee games.</strong> The real schedule produces about seven games a season between two season-final top-25 teams outside conference play. The calendar produces twelve, nearly all of them in the Swiss week, and they are games nobody could have bought in advance because nobody knew in August who would be a peer in November.</p>
     <p><strong>It travels about as much as reality.</strong> Not less, as the version of this design that kept the real dates did: the Swiss games fly, about 640 miles each, a quarter of the slate's mileage for a twelfth of its games. The early games stay regional (a Big Ten team playing a Mid-American school a few hundred miles away is as informative an edge as a flight across the country, because a mismatch is as informative as a toss-up on the margin scale), and the single heaviest travel burden on any one team still falls.</p>
     <p><strong>It keeps the games people want.</strong> Rivalries are untouched by construction. The last week of the season is still rivalry weekend. The difficulty a league's members face is a little more even than today, not the sharp equalising the as-played design achieved: the tuned weights spent almost nothing on it once the Swiss week fixed the late game by rule.</p>
@@ -329,7 +358,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 
     <h2>What this does not claim</h2>
     <ul>
-      <li><strong>The FCS game is priced at zero.</strong> Today it funds FCS athletic departments. The design assumes those programs are made whole under a central calendar; nothing here says how.</li>
+      <li><strong>The FCS game is priced at zero, and credited as information.</strong> Today it funds FCS athletic departments, and the design assumes those programs are made whole under a central calendar; nothing here says how. In the recovery comparison the real schedule keeps it, simulated against one FCS opponent per season at the strength the real margins imply (about 26 points below an average FBS team, with the spread of FCS strength added to the noise). An earlier version of this page scored the real schedule on its FBS games alone and overstated the design's margin by about a quarter of a point.</li>
       <li><strong>The calendar is a 2%-gap solution with a time limit</strong>, not an optimum, and five seasons before 2013, with seven-, eight- and nine-game leagues side by side, needed conference games to move further than four weeks or the bye window cut to two.</li>
       <li><strong>The Swiss pairing's rating band (4 points) is a choice, not tuned</strong>, as is the rule that two equal peers are split by distance.</li>
       <li><strong>Difficulty and the top-25 count use season-final SP+</strong>, which no scheduler has in advance. The recovery study and the Swiss draw use only what a scheduler would have: last season's ratings and the games played so far.</li>
