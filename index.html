@@ -296,6 +296,48 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 .picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
 .picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
 .picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
+.pairs { margin: 1.5rem 0 2rem; }
+.pairs .pair h3 { font-size: 1rem; margin-top: 0; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.pairs table.heat { border-collapse: collapse; min-width: 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.pairs table.heat th, .pairs table.heat td { padding: 0.32rem 0.42rem; text-align: center; border-bottom: none; vertical-align: middle; }
+.pairs table.heat thead th { font-size: 0.66rem; letter-spacing: 0.03em; text-transform: none; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.pairs table.heat tbody th { text-align: right; font-weight: 500; font-size: 0.76rem; text-transform: none; letter-spacing: 0; color: var(--muted); white-space: nowrap; }
+.pairs td.heat { font-weight: 600; color: var(--fg); min-width: 2.1rem; }
+.pairs td.heat.hot { color: #FBF7F0; }
+.pairs td.zero { color: var(--muted); font-weight: 400; }
+.pairs td.diag { color: var(--rule); font-style: italic; font-size: 0.7rem; }
+.pairs .seam-r { border-right: 1.5px solid var(--fg); }
+.pairs .seam-b { border-bottom: 1.5px solid var(--fg) !important; }
+.pairs .legend { margin-top: 0.2rem; }
+.graphs { position: relative; margin: 2rem 0; }
+.graphs .panel { margin-bottom: 1.5rem; }
+.graphs h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.graphs svg { display: block; width: 100%; height: auto; background: var(--figure-bg); border: 1px solid var(--grid); border-radius: 4px; }
+.graphs line.same { stroke: #3F7F7A; stroke-width: 0.8; stroke-opacity: 0.35; }
+.graphs line.bridge { stroke: #241E16; stroke-width: 0.9; stroke-opacity: 0.45; }
+.graphs svg.featured line.bridge { stroke-opacity: 0.14; }
+.graphs svg.featured line.same { stroke-opacity: 0.18; }
+.graphs line.hot { stroke: #9A4B3C; stroke-width: 3.2; stroke-opacity: 0.95; }
+.graphs line.hot.swiss { stroke: #3F5E7A; }
+.graphs line.hot.league { stroke: #3F7F7A; stroke-width: 1.1; stroke-opacity: 0.9; }
+.graphs svg.featured .node.mate image, .graphs svg.featured .node.mate .dot { opacity: 0.85; }
+.graphs .node { cursor: pointer; }
+.graphs .node .halo { fill: #FBF7F0; stroke: none; }
+.graphs .node .dot { fill: #B8AC97; }
+.graphs svg.featured .node image, .graphs svg.featured .node .dot { opacity: 0.42; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot, .graphs svg.featured .node.opp image, .graphs svg.featured .node.opp .dot { opacity: 1; }
+.graphs .labels { pointer-events: none; }
+.graphs .halo-big { fill: #FBF7F0; stroke: #9A4B3C; stroke-width: 2; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot { opacity: 1; }
+.graphs .node.opp .halo { stroke: #9A4B3C; stroke-width: 1.5; }
+.graphs text.label { font-family: var(--sans); font-size: 13px; fill: #241E16; text-anchor: middle; paint-order: stroke; stroke: #FBF7F0; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.graphs text.label.me { font-size: 16px; font-weight: 600; }
+.graphs .tip { position: absolute; display: none; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 0.85rem; padding: 0.3rem 0.55rem; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.graphs .legend { font-size: 0.9rem; color: var(--muted); margin-top: -0.6rem; }
+.picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.6rem 0 1.2rem; font-size: 0.95rem; }
+.picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
+.picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
+.picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
 </style>
 </head>
 <body>

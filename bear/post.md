@@ -1,6 +1,6 @@
 <!-- The post as Markdown; the interactive pieces are HTML blocks. Paste the whole file into a Bear post.
      Keep a blank line before and after every HTML block, never indent one, and leave the ids alone
-     (sel-season, sel-team, picker-hint, slate-*, draw-table, moved-*, pair-table, pair-note, svg-actual, svg-calendar, graph-*, sel-pairs-season, pairs-*). -->
+     (sel-season, sel-team, picker-hint, slate-*, draw-table, moved-*, pair-table, pair-note, svg-actual, svg-calendar, graph-*). -->
 
 <div class="cfbsched">
 
