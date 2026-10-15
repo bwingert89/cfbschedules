@@ -123,6 +123,46 @@
     sel.innerHTML = values.map(function (v) { return "<option value=\"" + esc(v) + "\"" + (v === chosen ? " selected" : "") + ">" + esc(v) + "</option>"; }).join("");
   };
   var load = function (path) { return fetch(path).then(function (r) { if (!r.ok) throw new Error(path + " " + r.status); return r.json(); }); };
+
+  // ---- who plays whom: the conference-pair matrices, with their own season selector ----------------
+  var heatTable = function (P, which) {
+    var names = P.names, short = P.short, power = P.power, k = names.length, A = P.actual, C = P.calendar, M = P[which], vmax = 1;
+    for (var i = 0; i < k; i++) for (var j = 0; j < k; j++) if (i !== j) vmax = Math.max(vmax, A[i][j], C[i][j]);
+    var head = "<tr><th></th>" + short.map(function (s, j) { return "<th class=\"" + (j === power - 1 ? "seam-r" : "") + "\">" + esc(s) + "</th>"; }).join("") + "</tr>";
+    var rows = [];
+    for (var r = 0; r < k; r++) {
+      var cells = [];
+      for (var c = 0; c < k; c++) {
+        var seam = (c === power - 1 ? "seam-r " : "") + (r === power - 1 ? "seam-b " : ""), v = M[r][c];
+        if (r === c) cells.push("<td class=\"diag " + seam + "\">" + v + "</td>");
+        else if (v === 0) cells.push("<td class=\"heat zero " + seam + "\">·</td>");
+        else { var t = v / vmax; cells.push("<td class=\"heat " + (t > 0.6 ? "hot " : "") + seam + "\" style=\"background:rgba(63,94,122," + t.toFixed(2) + ")\">" + v + "</td>"); }
+      }
+      rows.push("<tr><th class=\"" + (r === power - 1 ? "seam-b" : "") + "\">" + esc(short[r]) + "</th>" + cells.join("") + "</tr>");
+    }
+    return "<table class=\"heat\"><thead>" + head + "</thead><tbody>" + rows.join("") + "</tbody></table>";
+  };
+  var renderPairs = function (pairs, season) {
+    var P = pairs.seasons[season], k = P.names.length;
+    var between = ["actual", "calendar"].map(function (w) { var n = 0; for (var i = 0; i < k; i++) for (var j = i + 1; j < k; j++) n += P[w][i][j]; return n; });
+    var empty = ["actual", "calendar"].map(function (w) { var n = 0; for (var i = 0; i < k; i++) for (var j = i + 1; j < k; j++) if (P[w][i][j] === 0) n++; return n; });
+    byId("pairs-title-a").textContent = season + ", the real schedule: " + between[0] + " games between conferences";
+    byId("pairs-title-k").textContent = season + ", the designed calendar: " + between[1] + " games between conferences";
+    byId("pairs-actual").innerHTML = heatTable(P, "actual");
+    byId("pairs-calendar").innerHTML = heatTable(P, "calendar");
+    byId("pairs-note").textContent = "In " + season + " the real schedule leaves " + empty[0] + " conference pair" + (empty[0] === 1 ? "" : "s") + " without a game and the calendar " + empty[1] + "; the calendar adds " + (between[1] - between[0]) + " games between conferences.";
+  };
+  var selPairs = byId("sel-pairs-season");
+  if (selPairs) {
+    load(BASE + "pairs.json").then(function (pairs) {
+      var seasons = Object.keys(pairs.seasons).map(Number).sort(function (x, y) { return y - x; });
+      var chosen = seasons.indexOf(2024) >= 0 ? 2024 : seasons[0];
+      fill(selPairs, seasons, chosen);
+      selPairs.addEventListener("change", function () { renderPairs(pairs, Number(selPairs.value)); });
+      renderPairs(pairs, chosen);
+    }).catch(function (e) { selPairs.disabled = true; byId("pairs-note").textContent += " (The season selector could not load its data: " + e.message + ".)"; });
+  }
+
   Promise.all([load(BASE + "slates.json"), load(BASE + "graphs.json")]).then(function (loaded) {
     var data = loaded[0], graphs = loaded[1];
     var seasons = Object.keys(data.seasons).map(Number).sort(function (x, y) { return y - x; });

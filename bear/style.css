@@ -55,3 +55,18 @@
 .cfbsched .graphs text.label.me { font-size: 16px; font-weight: 700; }
 .cfbsched .graphs .tip { position: absolute; display: none; pointer-events: none; z-index: 2; padding: 0.3rem 0.55rem; border-radius: 2px; background: var(--heading-color); color: var(--background-color); font-size: 0.8rem; white-space: nowrap; }
 .cfbsched .graphs .legend { margin-top: -0.6rem; font-size: 0.85rem; color: var(--muted-color); }
+
+/* who plays whom: the conference-pair matrices */
+.cfbsched .pairs { margin: 1.5rem 0 2rem; }
+.cfbsched .pairs .pair h3 { font-size: 0.95rem; margin-top: 0; font-weight: 400; letter-spacing: 0; color: var(--muted-color); }
+.cfbsched .pairs table.heat { border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.cfbsched .pairs table.heat th, .cfbsched .pairs table.heat td { padding: 0.3rem 0.4rem; text-align: center; border-bottom: none; vertical-align: middle; }
+.cfbsched .pairs table.heat thead th { font-size: 0.66rem; letter-spacing: 0.03em; text-transform: none; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
+.cfbsched .pairs table.heat tbody th { text-align: right; font-weight: 500; font-size: 0.74rem; text-transform: none; letter-spacing: 0; color: var(--muted-color); white-space: nowrap; }
+.cfbsched .pairs td.heat { font-weight: 700; color: var(--heading-color); min-width: 2rem; }
+.cfbsched .pairs td.heat.hot { color: var(--background-color); }
+.cfbsched .pairs td.zero { color: var(--muted-color); font-weight: 400; }
+.cfbsched .pairs td.diag { color: var(--border-color); font-style: italic; font-size: 0.7rem; }
+.cfbsched .pairs .seam-r { border-right: 1.5px solid var(--heading-color); }
+.cfbsched .pairs .seam-b { border-bottom: 1.5px solid var(--heading-color) !important; }
+.cfbsched .pairs .legend { margin-top: 0.2rem; font-size: 0.85rem; color: var(--muted-color); }

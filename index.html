@@ -225,6 +225,77 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 .picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
 .picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
 .picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
+.graphs { position: relative; margin: 2rem 0; }
+.graphs .panel { margin-bottom: 1.5rem; }
+.graphs h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.graphs svg { display: block; width: 100%; height: auto; background: var(--figure-bg); border: 1px solid var(--grid); border-radius: 4px; }
+.graphs line.same { stroke: #3F7F7A; stroke-width: 0.8; stroke-opacity: 0.35; }
+.graphs line.bridge { stroke: #241E16; stroke-width: 0.9; stroke-opacity: 0.45; }
+.graphs svg.featured line.bridge { stroke-opacity: 0.14; }
+.graphs svg.featured line.same { stroke-opacity: 0.18; }
+.graphs line.hot { stroke: #9A4B3C; stroke-width: 3.2; stroke-opacity: 0.95; }
+.graphs line.hot.swiss { stroke: #3F5E7A; }
+.graphs line.hot.league { stroke: #3F7F7A; stroke-width: 1.1; stroke-opacity: 0.9; }
+.graphs svg.featured .node.mate image, .graphs svg.featured .node.mate .dot { opacity: 0.85; }
+.graphs .node { cursor: pointer; }
+.graphs .node .halo { fill: #FBF7F0; stroke: none; }
+.graphs .node .dot { fill: #B8AC97; }
+.graphs svg.featured .node image, .graphs svg.featured .node .dot { opacity: 0.42; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot, .graphs svg.featured .node.opp image, .graphs svg.featured .node.opp .dot { opacity: 1; }
+.graphs .labels { pointer-events: none; }
+.graphs .halo-big { fill: #FBF7F0; stroke: #9A4B3C; stroke-width: 2; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot { opacity: 1; }
+.graphs .node.opp .halo { stroke: #9A4B3C; stroke-width: 1.5; }
+.graphs text.label { font-family: var(--sans); font-size: 13px; fill: #241E16; text-anchor: middle; paint-order: stroke; stroke: #FBF7F0; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.graphs text.label.me { font-size: 16px; font-weight: 600; }
+.graphs .tip { position: absolute; display: none; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 0.85rem; padding: 0.3rem 0.55rem; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.graphs .legend { font-size: 0.9rem; color: var(--muted); margin-top: -0.6rem; }
+.picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.6rem 0 1.2rem; font-size: 0.95rem; }
+.picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
+.picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
+.picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
+.pairs { margin: 1.5rem 0 2rem; }
+.pairs .pair h3 { font-size: 1rem; margin-top: 0; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.pairs table.heat { border-collapse: collapse; min-width: 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.pairs table.heat th, .pairs table.heat td { padding: 0.32rem 0.42rem; text-align: center; border-bottom: none; vertical-align: middle; }
+.pairs table.heat thead th { font-size: 0.66rem; letter-spacing: 0.03em; text-transform: none; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.pairs table.heat tbody th { text-align: right; font-weight: 500; font-size: 0.76rem; text-transform: none; letter-spacing: 0; color: var(--muted); white-space: nowrap; }
+.pairs td.heat { font-weight: 600; color: var(--fg); min-width: 2.1rem; }
+.pairs td.heat.hot { color: #FBF7F0; }
+.pairs td.zero { color: var(--muted); font-weight: 400; }
+.pairs td.diag { color: var(--rule); font-style: italic; font-size: 0.7rem; }
+.pairs .seam-r { border-right: 1.5px solid var(--fg); }
+.pairs .seam-b { border-bottom: 1.5px solid var(--fg) !important; }
+.pairs .legend { margin-top: 0.2rem; }
+.graphs { position: relative; margin: 2rem 0; }
+.graphs .panel { margin-bottom: 1.5rem; }
+.graphs h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.graphs svg { display: block; width: 100%; height: auto; background: var(--figure-bg); border: 1px solid var(--grid); border-radius: 4px; }
+.graphs line.same { stroke: #3F7F7A; stroke-width: 0.8; stroke-opacity: 0.35; }
+.graphs line.bridge { stroke: #241E16; stroke-width: 0.9; stroke-opacity: 0.45; }
+.graphs svg.featured line.bridge { stroke-opacity: 0.14; }
+.graphs svg.featured line.same { stroke-opacity: 0.18; }
+.graphs line.hot { stroke: #9A4B3C; stroke-width: 3.2; stroke-opacity: 0.95; }
+.graphs line.hot.swiss { stroke: #3F5E7A; }
+.graphs line.hot.league { stroke: #3F7F7A; stroke-width: 1.1; stroke-opacity: 0.9; }
+.graphs svg.featured .node.mate image, .graphs svg.featured .node.mate .dot { opacity: 0.85; }
+.graphs .node { cursor: pointer; }
+.graphs .node .halo { fill: #FBF7F0; stroke: none; }
+.graphs .node .dot { fill: #B8AC97; }
+.graphs svg.featured .node image, .graphs svg.featured .node .dot { opacity: 0.42; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot, .graphs svg.featured .node.opp image, .graphs svg.featured .node.opp .dot { opacity: 1; }
+.graphs .labels { pointer-events: none; }
+.graphs .halo-big { fill: #FBF7F0; stroke: #9A4B3C; stroke-width: 2; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot { opacity: 1; }
+.graphs .node.opp .halo { stroke: #9A4B3C; stroke-width: 1.5; }
+.graphs text.label { font-family: var(--sans); font-size: 13px; fill: #241E16; text-anchor: middle; paint-order: stroke; stroke: #FBF7F0; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.graphs text.label.me { font-size: 16px; font-weight: 600; }
+.graphs .tip { position: absolute; display: none; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 0.85rem; padding: 0.3rem 0.55rem; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.graphs .legend { font-size: 0.9rem; color: var(--muted); margin-top: -0.6rem; }
+.picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.6rem 0 1.2rem; font-size: 0.95rem; }
+.picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
+.picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
+.picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -283,6 +354,18 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
       <thead><tr><th>season</th><th class="num">Swiss week</th><th class="num">Swiss games</th><th class="num">SP+ gap, paired on final SP+</th><th class="num">miles each</th><th class="num">conference games moved</th><th class="num">weeks each</th><th class="num">byes in wks 1–2</th><th class="num">rivalry-weekend byes</th><th class="num">opponents off a bye, per team</th><th>relaxation</th></tr></thead>
       <tbody><tr><td>2014</td><td class="num">13</td><td class="num">61</td><td class="num">2.2</td><td class="num">645</td><td class="num">248 of 499 (50%)</td><td class="num">1.9</td><td class="num">1</td><td class="num">5</td><td class="num">2.1</td><td>none</td></tr><tr><td>2019</td><td class="num">13</td><td class="num">60</td><td class="num">2.3</td><td class="num">556</td><td class="num">243 of 515 (47%)</td><td class="num">1.7</td><td class="num">0</td><td class="num">1</td><td class="num">2.0</td><td>none</td></tr><tr><td>2024</td><td class="num">13</td><td class="num">63</td><td class="num">2.6</td><td class="num">563</td><td class="num">265 of 530 (50%)</td><td class="num">1.8</td><td class="num">5</td><td class="num">6</td><td class="num">2.1</td><td>none</td></tr></tbody>
     </table>
+  </div>
+
+  <div class="pairs" id="pairs">
+    <div class="picker">
+      <label>season <select id="sel-pairs-season"><option value="2025">2025</option><option value="2024" selected>2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option></select></label>
+      <span class="hint">Who plays whom: non-conference games between each pair of conferences, the real schedule and the calendar on one colour scale. Power conferences sit above and left of the line; the diagonal shows each league's own games in grey and is left out of the scale; games against independents are not counted.</span>
+    </div>
+    <div class="pair">
+      <div><h3 id="pairs-title-a">2024, the real schedule: 160 games between conferences</h3><div class="tablewrap" id="pairs-actual"><table class="heat"><thead><tr><th></th><th class="">ACC</th><th class="">Big 12</th><th class="">Big Ten</th><th class="seam-r">SEC</th><th class="">American</th><th class="">C-USA</th><th class="">MAC</th><th class="">MWC</th><th class="">Sun Belt</th></tr></thead><tbody><tr><th class="">ACC</th><td class="diag ">69</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-r " style="background:rgba(63,94,122,0.92)">11</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td></tr><tr><th class="">Big 12</th><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="diag ">75</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat seam-r " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td></tr><tr><th class="">Big Ten</th><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="diag ">82</td><td class="heat seam-r " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td><td class="heat hot " style="background:rgba(63,94,122,0.75)">9</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="seam-b">SEC</th><td class="heat hot seam-b " style="background:rgba(63,94,122,0.92)">11</td><td class="heat seam-b " style="background:rgba(63,94,122,0.33)">4</td><td class="heat seam-b " style="background:rgba(63,94,122,0.33)">4</td><td class="diag seam-r seam-b ">65</td><td class="heat seam-b " style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-b " style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-b " style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-b " style="background:rgba(63,94,122,0.17)">2</td><td class="heat seam-b " style="background:rgba(63,94,122,0.58)">7</td></tr><tr><th class="">American</th><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td><td class="heat seam-r " style="background:rgba(63,94,122,0.42)">5</td><td class="diag ">58</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat zero ">·</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot " style="background:rgba(63,94,122,0.92)">11</td></tr><tr><th class="">C-USA</th><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td><td class="heat seam-r " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="diag ">41</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td></tr><tr><th class="">MAC</th><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="heat hot " style="background:rgba(63,94,122,0.75)">9</td><td class="heat seam-r " style="background:rgba(63,94,122,0.58)">7</td><td class="heat zero ">·</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">49</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td></tr><tr><th class="">MWC</th><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat seam-r " style="background:rgba(63,94,122,0.17)">2</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.08)">1</td><td class="diag ">43</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="">Sun Belt</th><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.17)">2</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat seam-r " style="background:rgba(63,94,122,0.58)">7</td><td class="heat hot " style="background:rgba(63,94,122,0.92)">11</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">57</td></tr></tbody></table></div></div>
+      <div><h3 id="pairs-title-k">2024, the designed calendar: 213 games between conferences</h3><div class="tablewrap" id="pairs-calendar"><table class="heat"><thead><tr><th></th><th class="">ACC</th><th class="">Big 12</th><th class="">Big Ten</th><th class="seam-r">SEC</th><th class="">American</th><th class="">C-USA</th><th class="">MAC</th><th class="">MWC</th><th class="">Sun Belt</th></tr></thead><tbody><tr><th class="">ACC</th><td class="diag ">69</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-r " style="background:rgba(63,94,122,0.83)">10</td><td class="heat hot " style="background:rgba(63,94,122,0.83)">10</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot " style="background:rgba(63,94,122,1.00)">12</td></tr><tr><th class="">Big 12</th><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">75</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-r " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td></tr><tr><th class="">Big Ten</th><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="diag ">82</td><td class="heat seam-r " style="background:rgba(63,94,122,0.50)">6</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot " style="background:rgba(63,94,122,0.75)">9</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td></tr><tr><th class="seam-b">SEC</th><td class="heat hot seam-b " style="background:rgba(63,94,122,0.83)">10</td><td class="heat seam-b " style="background:rgba(63,94,122,0.33)">4</td><td class="heat seam-b " style="background:rgba(63,94,122,0.50)">6</td><td class="diag seam-r seam-b ">65</td><td class="heat hot seam-b " style="background:rgba(63,94,122,0.75)">9</td><td class="heat seam-b " style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-b " style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-b " style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-b " style="background:rgba(63,94,122,1.00)">12</td></tr><tr><th class="">American</th><td class="heat hot " style="background:rgba(63,94,122,0.83)">10</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-r " style="background:rgba(63,94,122,0.75)">9</td><td class="diag ">58</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td></tr><tr><th class="">C-USA</th><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-r " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="diag ">41</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td></tr><tr><th class="">MAC</th><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot " style="background:rgba(63,94,122,0.75)">9</td><td class="heat seam-r " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">49</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="">MWC</th><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat " style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-r " style="background:rgba(63,94,122,0.42)">5</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">43</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="">Sun Belt</th><td class="heat hot " style="background:rgba(63,94,122,1.00)">12</td><td class="heat " style="background:rgba(63,94,122,0.58)">7</td><td class="heat " style="background:rgba(63,94,122,0.50)">6</td><td class="heat hot seam-r " style="background:rgba(63,94,122,1.00)">12</td><td class="heat hot " style="background:rgba(63,94,122,0.67)">8</td><td class="heat " style="background:rgba(63,94,122,0.33)">4</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="heat " style="background:rgba(63,94,122,0.25)">3</td><td class="diag ">57</td></tr></tbody></table></div></div>
+    </div>
+    <p class="legend" id="pairs-note">In 2024 the real schedule leaves 1 conference pair without a game and the calendar 0; the calendar adds 53 games between conferences.</p>
   </div>
 
   <div class="col">
@@ -494,6 +577,46 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
     sel.innerHTML = values.map(function (v) { return "<option value=\"" + esc(v) + "\"" + (v === chosen ? " selected" : "") + ">" + esc(v) + "</option>"; }).join("");
   };
   var load = function (path) { return fetch(path).then(function (r) { if (!r.ok) throw new Error(path + " " + r.status); return r.json(); }); };
+
+  // ---- who plays whom: the conference-pair matrices, with their own season selector ----------------
+  var heatTable = function (P, which) {
+    var names = P.names, short = P.short, power = P.power, k = names.length, A = P.actual, C = P.calendar, M = P[which], vmax = 1;
+    for (var i = 0; i < k; i++) for (var j = 0; j < k; j++) if (i !== j) vmax = Math.max(vmax, A[i][j], C[i][j]);
+    var head = "<tr><th></th>" + short.map(function (s, j) { return "<th class=\"" + (j === power - 1 ? "seam-r" : "") + "\">" + esc(s) + "</th>"; }).join("") + "</tr>";
+    var rows = [];
+    for (var r = 0; r < k; r++) {
+      var cells = [];
+      for (var c = 0; c < k; c++) {
+        var seam = (c === power - 1 ? "seam-r " : "") + (r === power - 1 ? "seam-b " : ""), v = M[r][c];
+        if (r === c) cells.push("<td class=\"diag " + seam + "\">" + v + "</td>");
+        else if (v === 0) cells.push("<td class=\"heat zero " + seam + "\">·</td>");
+        else { var t = v / vmax; cells.push("<td class=\"heat " + (t > 0.6 ? "hot " : "") + seam + "\" style=\"background:rgba(63,94,122," + t.toFixed(2) + ")\">" + v + "</td>"); }
+      }
+      rows.push("<tr><th class=\"" + (r === power - 1 ? "seam-b" : "") + "\">" + esc(short[r]) + "</th>" + cells.join("") + "</tr>");
+    }
+    return "<table class=\"heat\"><thead>" + head + "</thead><tbody>" + rows.join("") + "</tbody></table>";
+  };
+  var renderPairs = function (pairs, season) {
+    var P = pairs.seasons[season], k = P.names.length;
+    var between = ["actual", "calendar"].map(function (w) { var n = 0; for (var i = 0; i < k; i++) for (var j = i + 1; j < k; j++) n += P[w][i][j]; return n; });
+    var empty = ["actual", "calendar"].map(function (w) { var n = 0; for (var i = 0; i < k; i++) for (var j = i + 1; j < k; j++) if (P[w][i][j] === 0) n++; return n; });
+    byId("pairs-title-a").textContent = season + ", the real schedule: " + between[0] + " games between conferences";
+    byId("pairs-title-k").textContent = season + ", the designed calendar: " + between[1] + " games between conferences";
+    byId("pairs-actual").innerHTML = heatTable(P, "actual");
+    byId("pairs-calendar").innerHTML = heatTable(P, "calendar");
+    byId("pairs-note").textContent = "In " + season + " the real schedule leaves " + empty[0] + " conference pair" + (empty[0] === 1 ? "" : "s") + " without a game and the calendar " + empty[1] + "; the calendar adds " + (between[1] - between[0]) + " games between conferences.";
+  };
+  var selPairs = byId("sel-pairs-season");
+  if (selPairs) {
+    load(BASE + "pairs.json").then(function (pairs) {
+      var seasons = Object.keys(pairs.seasons).map(Number).sort(function (x, y) { return y - x; });
+      var chosen = seasons.indexOf(2024) >= 0 ? 2024 : seasons[0];
+      fill(selPairs, seasons, chosen);
+      selPairs.addEventListener("change", function () { renderPairs(pairs, Number(selPairs.value)); });
+      renderPairs(pairs, chosen);
+    }).catch(function (e) { selPairs.disabled = true; byId("pairs-note").textContent += " (The season selector could not load its data: " + e.message + ".)"; });
+  }
+
   Promise.all([load(BASE + "slates.json"), load(BASE + "graphs.json")]).then(function (loaded) {
     var data = loaded[0], graphs = loaded[1];
     var seasons = Object.keys(data.seasons).map(Number).sort(function (x, y) { return y - x; });

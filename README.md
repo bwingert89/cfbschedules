@@ -12,6 +12,7 @@ Served by GitHub Pages at https://bwingert89.github.io/cfbschedules/
 |---|---|
 | `index.html` | the whole page, standalone: the write-up, the three-season overview figure, the season/team selector, the two crest graphs and the slate tables |
 | `slates.json` | every team-season: actual and designed non-conference slates, the in-season Swiss-week draw shares, the conference gap rows, league games moved (5.5 MB) |
+| `pairs.json` | non-conference games between each pair of conferences, per season, real schedule and calendar |
 | `graphs.json` | node positions (spring layout from a spectral start) and edge lists for the real schedule and the calendar, per season |
 | `logos/<id>.png` | team crests, 64 px, keyed by CollegeFootballData team id |
 | `networks.png` | the static overview of 2014, 2019 and 2024, real schedule above and calendar below |
