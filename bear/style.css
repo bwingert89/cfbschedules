@@ -77,3 +77,7 @@
 .cfbsched .breakout { width: min(1100px, calc(100vw - 40px)); position: relative; left: 50%; transform: translateX(-50%); }
 .cfbsched .tablewrap.breakout { overflow-x: auto; }
 .cfbsched .graphs .tip { transform: none; }
+
+/* the blog sets white-space: nowrap on tables; let the wide tables' headers and free-text cells wrap instead of scrolling */
+.cfbsched .tablewrap.breakout table th { white-space: normal; max-width: 7.5rem; line-height: 1.25; vertical-align: bottom; }
+.cfbsched .tablewrap.breakout table td:last-child { white-space: normal; min-width: 9rem; }
