@@ -338,6 +338,48 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
 .picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
 .picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
 .picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
+.pairs { margin: 1.5rem 0 2rem; }
+.pairs .pair h3 { font-size: 1rem; margin-top: 0; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.pairs table.heat { border-collapse: collapse; min-width: 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.pairs table.heat th, .pairs table.heat td { padding: 0.32rem 0.42rem; text-align: center; border-bottom: none; vertical-align: middle; }
+.pairs table.heat thead th { font-size: 0.66rem; letter-spacing: 0.03em; text-transform: none; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.pairs table.heat tbody th { text-align: right; font-weight: 500; font-size: 0.76rem; text-transform: none; letter-spacing: 0; color: var(--muted); white-space: nowrap; }
+.pairs td.heat { font-weight: 600; color: var(--fg); min-width: 2.1rem; }
+.pairs td.heat.hot { color: #FBF7F0; }
+.pairs td.zero { color: var(--muted); font-weight: 400; }
+.pairs td.diag { color: var(--rule); font-style: italic; font-size: 0.7rem; }
+.pairs .seam-r { border-right: 1.5px solid var(--fg); }
+.pairs .seam-b { border-bottom: 1.5px solid var(--fg) !important; }
+.pairs .legend { margin-top: 0.2rem; }
+.graphs { position: relative; margin: 2rem 0; }
+.graphs .panel { margin-bottom: 1.5rem; }
+.graphs h3 { margin: 0 0 0.4rem; font-size: 1.1rem; color: var(--muted); font-family: var(--sans); font-weight: 500; }
+.graphs svg { display: block; width: 100%; height: auto; background: var(--figure-bg); border: 1px solid var(--grid); border-radius: 4px; }
+.graphs line.same { stroke: #3F7F7A; stroke-width: 0.8; stroke-opacity: 0.35; }
+.graphs line.bridge { stroke: #241E16; stroke-width: 0.9; stroke-opacity: 0.45; }
+.graphs svg.featured line.bridge { stroke-opacity: 0.14; }
+.graphs svg.featured line.same { stroke-opacity: 0.18; }
+.graphs line.hot { stroke: #9A4B3C; stroke-width: 3.2; stroke-opacity: 0.95; }
+.graphs line.hot.swiss { stroke: #3F5E7A; }
+.graphs line.hot.league { stroke: #3F7F7A; stroke-width: 1.1; stroke-opacity: 0.9; }
+.graphs svg.featured .node.mate image, .graphs svg.featured .node.mate .dot { opacity: 0.85; }
+.graphs .node { cursor: pointer; }
+.graphs .node .halo { fill: #FBF7F0; stroke: none; }
+.graphs .node .dot { fill: #B8AC97; }
+.graphs svg.featured .node image, .graphs svg.featured .node .dot { opacity: 0.42; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot, .graphs svg.featured .node.opp image, .graphs svg.featured .node.opp .dot { opacity: 1; }
+.graphs .labels { pointer-events: none; }
+.graphs .halo-big { fill: #FBF7F0; stroke: #9A4B3C; stroke-width: 2; }
+.graphs svg.featured .node.sel image, .graphs svg.featured .node.sel .dot { opacity: 1; }
+.graphs .node.opp .halo { stroke: #9A4B3C; stroke-width: 1.5; }
+.graphs text.label { font-family: var(--sans); font-size: 13px; fill: #241E16; text-anchor: middle; paint-order: stroke; stroke: #FBF7F0; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.graphs text.label.me { font-size: 16px; font-weight: 600; }
+.graphs .tip { position: absolute; display: none; pointer-events: none; background: var(--fg); color: var(--bg); font-size: 0.85rem; padding: 0.3rem 0.55rem; border-radius: 4px; white-space: nowrap; z-index: 2; }
+.graphs .legend { font-size: 0.9rem; color: var(--muted); margin-top: -0.6rem; }
+.picker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; margin: 0.6rem 0 1.2rem; font-size: 0.95rem; }
+.picker label { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: flex; gap: 0.5rem; align-items: center; }
+.picker select { font: inherit; font-family: var(--sans); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--fg); background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.5rem; min-width: 7rem; }
+.picker .hint { flex-basis: 100%; color: var(--muted); font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -364,7 +406,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
     <p>A simulated-annealing search chooses the early games, scoring every candidate on the gap standard error plus four costs, each a ratio to the real schedule's: miles per game, how unevenly non-conference difficulty falls across the teams of a conference, a fan-interest proxy, and the power-versus-Group of Five gap. The weights were tuned by Bayesian optimisation on three seasons from 2015 to 2019 and applied to every season from 2004 to 2025; the seasons after 2020, and 2025 itself, were never used to choose anything. Hosts are assigned so that every team hosts half of its new games.</p>
   </div>
 
-  <figure>
+  <figure class="breakout">
     <img src="networks.png" alt="Six network diagrams: the real 2014, 2019 and 2024 schedules in the top row and the designed calendar below, teams coloured by conference, conference games in teal and non-conference games in black.">
     <figcaption>Three seasons as graphs, the real schedule above and the designed calendar below. Each dot is a team, coloured by power conference with every Group of Five team in grey; teal edges are conference games and black edges are the cross-conference bridges. Layouts are spring embeddings from the same seed, so a difference in shape is the schedule. The designed seasons have 60 to 80 more bridges and the leagues no longer sit off on their own.</figcaption>
   </figure>
@@ -373,7 +415,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
     <h2>What changes, season by season</h2>
     <p>The table reads across each season. The gap standard error is the mean over all conference pairs; the tier gap is power against Group of Five; miles are campus to campus over the whole non-conference slate; the difficulty spread is the average within-conference standard deviation of a team's summed opponent SP+, which measures how unevenly a league's members are loaded.</p>
   </div>
-  <div class="tablewrap">
+  <div class="tablewrap breakout">
     <table>
       <thead><tr><th></th><th class="num">2014 actual</th><th class="num">2014 calendar</th><th class="num">2019 actual</th><th class="num">2019 calendar</th><th class="num">2024 actual</th><th class="num">2024 calendar</th></tr></thead>
       <tbody>
@@ -391,14 +433,14 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
   <div class="col">
     <p>And what the calendar itself costs. Every designed game has a week; the as-played version of this design, which had to fit its games into whatever free weeks the real calendar left, stranded a dozen games a season.</p>
   </div>
-  <div class="tablewrap">
+  <div class="tablewrap breakout">
     <table>
       <thead><tr><th>season</th><th class="num">Swiss week</th><th class="num">Swiss games</th><th class="num">SP+ gap, paired on final SP+</th><th class="num">miles each</th><th class="num">conference games moved</th><th class="num">weeks each</th><th class="num">byes in wks 1–2</th><th class="num">rivalry-weekend byes</th><th class="num">opponents off a bye, per team</th><th>relaxation</th></tr></thead>
       <tbody><tr><td>2014</td><td class="num">13</td><td class="num">61</td><td class="num">2.2</td><td class="num">645</td><td class="num">248 of 499 (50%)</td><td class="num">1.9</td><td class="num">1</td><td class="num">5</td><td class="num">2.1</td><td>none</td></tr><tr><td>2019</td><td class="num">13</td><td class="num">60</td><td class="num">2.3</td><td class="num">556</td><td class="num">243 of 515 (47%)</td><td class="num">1.7</td><td class="num">0</td><td class="num">1</td><td class="num">2.0</td><td>none</td></tr><tr><td>2024</td><td class="num">13</td><td class="num">63</td><td class="num">2.6</td><td class="num">563</td><td class="num">265 of 530 (50%)</td><td class="num">1.8</td><td class="num">5</td><td class="num">6</td><td class="num">2.1</td><td>none</td></tr></tbody>
     </table>
   </div>
 
-  <div class="pairs" id="pairs">
+  <div class="pairs breakout" id="pairs">
     <div class="picker">
       <label>season <select id="sel-pairs-season"><option value="2025">2025</option><option value="2024" selected>2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option></select></label>
       <span class="hint">Who plays whom: non-conference games between each pair of conferences, the real schedule and the calendar on one colour scale. Power conferences sit above and left of the line; the diagonal shows each league's own games in grey and is left out of the scale; games against independents are not counted.</span>
@@ -429,7 +471,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
     <h3 id="slate-title">Ohio State, 2024 · Big Ten · season-final SP+ +31.2</h3>
   </div>
 
-  <div class="pair">
+  <div class="pair breakout">
     <div>
       <h3>Actual</h3>
       <div class="tablewrap" id="slate-actual"><table>
@@ -445,7 +487,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
       </table></div>
     </div>
   </div>
-  <div class="pair">
+  <div class="pair breakout">
     <div>
       <h3>The Swiss-week draw, paired in season</h3>
       <div class="tablewrap" id="draw-table"><table>
@@ -459,7 +501,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
     </div>
   </div>
 
-  <div class="graphs" id="graphs">
+  <div class="graphs breakout" id="graphs">
     <div class="panel"><h3 id="graph-season-a">the real schedule</h3><svg id="svg-actual" viewBox="0 0 1000 850"></svg></div>
     <div class="panel"><h3 id="graph-season-k">the designed calendar</h3><svg id="svg-calendar" viewBox="0 0 1000 850"></svg></div>
     <div class="tip" id="graph-tip"></div>
@@ -469,7 +511,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.86em
   <div class="col">
     <p>Why does a slate against the Group of Five improve how a league compares with the SEC? Because a team's games are information for everyone, not only for the two teams playing. Every cross-conference game is a bridge, and the precision of any conference comparison depends on how many bridges there are and how they are spread, through every path in the graph. A team's own games are a small part of that; what improves its row is the whole redesigned season around it. The standard error of the selected team's conference against each other conference, on the real schedule and the calendar:</p>
   </div>
-  <div class="tablewrap" id="pair-table">
+  <div class="tablewrap breakout" id="pair-table">
     <table>
       <thead><tr><th>Big Ten against</th><th class="num">ACC</th><th class="num">SEC</th><th class="num">Big 12</th><th class="num">American</th><th class="num">Conf. USA</th><th class="num">Mid-American</th><th class="num">Mountain West</th><th class="num">Sun Belt</th></tr></thead>
       <tbody>

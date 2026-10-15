@@ -1,10 +1,12 @@
-<!-- The post as Markdown; the interactive pieces are HTML blocks. Paste the whole file into a Bear post.
+<!-- The post as Markdown; the interactive pieces are HTML blocks, each wrapped in its own <div class="cfbsched"> so the
+     blog's scoped CSS applies whatever the Markdown renderer does with open tags. Paste the whole file into a Bear post.
      Keep a blank line before and after every HTML block, never indent one, and leave the ids alone
-     (sel-season, sel-team, picker-hint, slate-*, draw-table, moved-*, pair-table, pair-note, svg-actual, svg-calendar, graph-*). -->
+     (sel-season, sel-team, picker-hint, slate-*, draw-table, moved-*, pair-table, pair-note, svg-actual, svg-calendar, graph-*,
+     sel-pairs-season, pairs-*). -->
 
 <div class="cfbsched">
-
 <p class="lede">Every FBS program schedules its own non-conference games, for itself. What happens if the sport schedules them centrally, to learn as much as it can about how its conferences compare, and what does that cost the people who schedule today?</p>
+</div>
 
 ## The problem the schedule is asked to solve
 
@@ -26,16 +28,19 @@ Each conference team gets twelve games minus its league games, never more than f
 
 A simulated-annealing search chooses the early games, scoring every candidate on the gap standard error plus four costs, each a ratio to the real schedule's: miles per game, how unevenly non-conference difficulty falls across the teams of a conference, a fan-interest proxy, and the power-versus-Group of Five gap. The weights were tuned by Bayesian optimisation on three seasons from 2015 to 2019 and applied to every season from 2004 to 2025; the seasons after 2020, and 2025 itself, were never used to choose anything. Hosts are assigned so that every team hosts half of its new games.
 
-<figure>
+<div class="cfbsched">
+<figure class="breakout">
 <img alt="Six network diagrams: the real 2014, 2019 and 2024 schedules in the top row and the designed calendar below, teams coloured by conference, conference games in teal and non-conference games in black." src="https://bwingert89.github.io/cfbschedules/networks.png"/>
 <figcaption>Three seasons as graphs, the real schedule above and the designed calendar below. Each dot is a team, coloured by power conference with every Group of Five team in grey; teal edges are conference games and black edges are the cross-conference bridges. Layouts are spring embeddings from the same seed, so a difference in shape is the schedule. The designed seasons have 60 to 80 more bridges and the leagues no longer sit off on their own.</figcaption>
 </figure>
+</div>
 
 ## What changes, season by season
 
 The table reads across each season. The gap standard error is the mean over all conference pairs; the tier gap is power against Group of Five; miles are campus to campus over the whole non-conference slate; the difficulty spread is the average within-conference standard deviation of a team's summed opponent SP+, which measures how unevenly a league's members are loaded.
 
-<div class="tablewrap">
+<div class="cfbsched">
+<div class="tablewrap breakout">
 <table>
 <thead><tr><th></th><th class="num">2014 actual</th><th class="num">2014 calendar</th><th class="num">2019 actual</th><th class="num">2019 calendar</th><th class="num">2024 actual</th><th class="num">2024 calendar</th></tr></thead>
 <tbody>
@@ -50,17 +55,21 @@ The table reads across each season. The gap standard error is the mean over all 
 </tbody>
 </table>
 </div>
+</div>
 
 And what the calendar itself costs. Every designed game has a week; the as-played version of this design, which had to fit its games into whatever free weeks the real calendar left, stranded a dozen games a season.
 
-<div class="tablewrap">
+<div class="cfbsched">
+<div class="tablewrap breakout">
 <table>
 <thead><tr><th>season</th><th class="num">Swiss week</th><th class="num">Swiss games</th><th class="num">SP+ gap, paired on final SP+</th><th class="num">miles each</th><th class="num">conference games moved</th><th class="num">weeks each</th><th class="num">byes in wks 1–2</th><th class="num">rivalry-weekend byes</th><th class="num">opponents off a bye, per team</th><th>relaxation</th></tr></thead>
 <tbody><tr><td>2014</td><td class="num">13</td><td class="num">61</td><td class="num">2.2</td><td class="num">645</td><td class="num">248 of 499 (50%)</td><td class="num">1.9</td><td class="num">1</td><td class="num">5</td><td class="num">2.1</td><td>none</td></tr><tr><td>2019</td><td class="num">13</td><td class="num">60</td><td class="num">2.3</td><td class="num">556</td><td class="num">243 of 515 (47%)</td><td class="num">1.7</td><td class="num">0</td><td class="num">1</td><td class="num">2.0</td><td>none</td></tr><tr><td>2024</td><td class="num">13</td><td class="num">63</td><td class="num">2.6</td><td class="num">563</td><td class="num">265 of 530 (50%)</td><td class="num">1.8</td><td class="num">5</td><td class="num">6</td><td class="num">2.1</td><td>none</td></tr></tbody>
 </table>
 </div>
+</div>
 
-<div class="pairs" id="pairs">
+<div class="cfbsched">
+<div class="pairs breakout" id="pairs">
 <div class="picker">
 <label>season <select id="sel-pairs-season"><option value="2025">2025</option><option selected="" value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2019">2019</option><option value="2018">2018</option><option value="2017">2017</option><option value="2016">2016</option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option></select></label>
 <span class="hint">Who plays whom: non-conference games between each pair of conferences, the real schedule and the calendar on one colour scale. Power conferences sit above and left of the line; the diagonal shows each league's own games in grey and is left out of the scale; games against independents are not counted.</span>
@@ -70,6 +79,7 @@ And what the calendar itself costs. Every designed game has a week; the as-playe
 <div><h3 id="pairs-title-k">2024, the designed calendar: 213 games between conferences</h3><div class="tablewrap" id="pairs-calendar"><table class="heat"><thead><tr><th></th><th class="">ACC</th><th class="">Big 12</th><th class="">Big Ten</th><th class="seam-r">SEC</th><th class="">American</th><th class="">C-USA</th><th class="">MAC</th><th class="">MWC</th><th class="">Sun Belt</th></tr></thead><tbody><tr><th class="">ACC</th><td class="diag">69</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-r" style="background:rgba(63,94,122,0.83)">10</td><td class="heat hot" style="background:rgba(63,94,122,0.83)">10</td><td class="heat" style="background:rgba(63,94,122,0.50)">6</td><td class="heat hot" style="background:rgba(63,94,122,0.67)">8</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot" style="background:rgba(63,94,122,1.00)">12</td></tr><tr><th class="">Big 12</th><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="diag">75</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-r" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.50)">6</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td></tr><tr><th class="">Big Ten</th><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td><td class="diag">82</td><td class="heat seam-r" style="background:rgba(63,94,122,0.50)">6</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot" style="background:rgba(63,94,122,0.75)">9</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.50)">6</td></tr><tr><th class="seam-b">SEC</th><td class="heat hot seam-b" style="background:rgba(63,94,122,0.83)">10</td><td class="heat seam-b" style="background:rgba(63,94,122,0.33)">4</td><td class="heat seam-b" style="background:rgba(63,94,122,0.50)">6</td><td class="diag seam-r seam-b">65</td><td class="heat hot seam-b" style="background:rgba(63,94,122,0.75)">9</td><td class="heat seam-b" style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-b" style="background:rgba(63,94,122,0.58)">7</td><td class="heat seam-b" style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-b" style="background:rgba(63,94,122,1.00)">12</td></tr><tr><th class="">American</th><td class="heat hot" style="background:rgba(63,94,122,0.83)">10</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat hot seam-r" style="background:rgba(63,94,122,0.75)">9</td><td class="diag">58</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat hot" style="background:rgba(63,94,122,0.67)">8</td></tr><tr><th class="">C-USA</th><td class="heat" style="background:rgba(63,94,122,0.50)">6</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-r" style="background:rgba(63,94,122,0.58)">7</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="diag">41</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td></tr><tr><th class="">MAC</th><td class="heat hot" style="background:rgba(63,94,122,0.67)">8</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat hot" style="background:rgba(63,94,122,0.75)">9</td><td class="heat seam-r" style="background:rgba(63,94,122,0.58)">7</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="diag">49</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="">MWC</th><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.50)">6</td><td class="heat" style="background:rgba(63,94,122,0.42)">5</td><td class="heat seam-r" style="background:rgba(63,94,122,0.42)">5</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="diag">43</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td></tr><tr><th class="">Sun Belt</th><td class="heat hot" style="background:rgba(63,94,122,1.00)">12</td><td class="heat" style="background:rgba(63,94,122,0.58)">7</td><td class="heat" style="background:rgba(63,94,122,0.50)">6</td><td class="heat hot seam-r" style="background:rgba(63,94,122,1.00)">12</td><td class="heat hot" style="background:rgba(63,94,122,0.67)">8</td><td class="heat" style="background:rgba(63,94,122,0.33)">4</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="heat" style="background:rgba(63,94,122,0.25)">3</td><td class="diag">57</td></tr></tbody></table></div></div>
 </div>
 <p class="legend" id="pairs-note">In 2024 the real schedule leaves 1 conference pair without a game and the calendar 0; the calendar adds 53 games between conferences.</p>
+</div>
 </div>
 
 ## Why this beats everyone for themselves
@@ -88,17 +98,22 @@ The first is the price of an honest tier gap. When the power team hosts every cr
 
 ## One team's slate
 
+<div class="cfbsched">
 <div class="picker">
 <label>season <select id="sel-season"><option value="2024">2024</option></select></label>
 <label>team <select id="sel-team"><option value="Ohio State">Ohio State</option></select></label>
 <span class="hint" id="picker-hint">Pick any FBS team in any season from 2004 to 2025 (2020 excluded); the tables below follow the selection. The text in this paragraph describes Ohio State, 2024.</span>
 </div>
+</div>
 
 Ohio State's real 2024 non-conference schedule was the modern power template: Akron, Western Michigan, Marshall, all at home, two of them Mid-American opponents ranked outside the top 100 by season-final SP+. Under the calendar it keeps two early games against the Group of Five, App State (home, week 2) and Eastern Michigan (home, week 3), because that is where the sport's missing information is, and then plays the Swiss week. On season-final ratings the Swiss opponent is Ole Miss (away, 529 miles). Paired in season across a hundred simulated seasons, the draw is an SEC opponent 96% of the time.
 
+<div class="cfbsched">
 <h3 id="slate-title">Ohio State, 2024 · Big Ten · season-final SP+ +31.2</h3>
+</div>
 
-<div class="pair">
+<div class="cfbsched">
+<div class="pair breakout">
 <div>
 <h3>Actual</h3>
 <div class="tablewrap" id="slate-actual"><table>
@@ -114,8 +129,10 @@ Ohio State's real 2024 non-conference schedule was the modern power template: Ak
 </table></div>
 </div>
 </div>
+</div>
 
-<div class="pair">
+<div class="cfbsched">
+<div class="pair breakout">
 <div>
 <h3>The Swiss-week draw, paired in season</h3>
 <div class="tablewrap" id="draw-table"><table>
@@ -128,17 +145,21 @@ Ohio State's real 2024 non-conference schedule was the modern power template: Ak
 <p id="moved-note">5 of its 9 conference games change weeks so that week 13 is clear; the Big Ten finale stays on rivalry weekend. Every other team in the league flexes the same way, which is what the "conference games moved" column above counts.</p>
 </div>
 </div>
+</div>
 
-<div class="graphs" id="graphs">
+<div class="cfbsched">
+<div class="graphs breakout" id="graphs">
 <div class="panel"><h3 id="graph-season-a">the real schedule</h3><svg id="svg-actual" viewbox="0 0 1000 850"></svg></div>
 <div class="panel"><h3 id="graph-season-k">the designed calendar</h3><svg id="svg-calendar" viewbox="0 0 1000 850"></svg></div>
 <div class="tip" id="graph-tip"></div>
 <p class="legend">The selected team's non-conference games are red, its Swiss-week game blue and those opponents named; its conference games are the solid teal edges and its league rivals the brighter crests. Faded teal edges are everyone else's conference games, faded grey their non-conference games. Hover any crest to see that team's games; click it to select it. Layouts are spring embeddings from the same seed, so a difference in shape is the schedule.</p>
 </div>
+</div>
 
 Why does a slate against the Group of Five improve how a league compares with the SEC? Because a team's games are information for everyone, not only for the two teams playing. Every cross-conference game is a bridge, and the precision of any conference comparison depends on how many bridges there are and how they are spread, through every path in the graph. A team's own games are a small part of that; what improves its row is the whole redesigned season around it. The standard error of the selected team's conference against each other conference, on the real schedule and the calendar:
 
-<div class="tablewrap" id="pair-table">
+<div class="cfbsched">
+<div class="tablewrap breakout" id="pair-table">
 <table>
 <thead><tr><th>Big Ten against</th><th class="num">ACC</th><th class="num">SEC</th><th class="num">Big 12</th><th class="num">American</th><th class="num">Conf. USA</th><th class="num">Mid-American</th><th class="num">Mountain West</th><th class="num">Sun Belt</th></tr></thead>
 <tbody>
@@ -147,8 +168,11 @@ Why does a slate against the Group of Five improve how a league compares with th
 </tbody>
 </table>
 </div>
+</div>
 
+<div class="cfbsched">
 <p id="pair-note">Every pair improves, by 0.2 to 0.7 points, and Ohio State's own rating is pinned down more tightly too (its standard error falls from 5.0 to 4.9 points). The team gives up one home game and a week of certainty about its November, and the league it belongs to becomes something the rest of the sport can measure.</p>
+</div>
 
 ## What this does not claim
 
@@ -162,5 +186,3 @@ Why does a slate against the Group of Five improve how a league compares with th
 ---
 
 *Data: CollegeFootballData games 2004–2025, season-final SP+, campus coordinates, closing spreads. Method: least-squares gap variance from the Laplacian pseudo-inverse; simulated annealing over 2-opt and 3-rotation moves for the early games; the Swiss week paired in season by nearest cross-conference peer within a band; conference games re-dated by integer programme under bye rules; hosts by integer programme; weights tuned by Gaussian-process expected improvement on 2015, 2017 and 2019; recovery simulated with 200 replicate seasons at 16 points of margin noise (60 for the in-season Swiss variant). Code in `cfbgraph.schedule`; the full record with every table is `notebooks/schedule_optimizer.ipynb`, section 7.*
-
-</div>

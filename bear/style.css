@@ -71,9 +71,9 @@
 .cfbsched .pairs .seam-b { border-bottom: 1.5px solid var(--heading-color) !important; }
 .cfbsched .pairs .legend { margin-top: 0.2rem; font-size: 0.85rem; color: var(--muted-color); }
 
-/* Let the wide blocks (season tables, matrices, slate blocks, graphs, the overview figure) break out of the
-   blog's column to ~1100px, centred on the viewport; the prose (.col) keeps the blog's reading width.
+/* Let the wide blocks (class .breakout: season tables, matrices, slate blocks, graphs, the overview figure) break
+   out of the blog's column to ~1100px, centred on the viewport; the prose keeps the blog's reading width.
    The body is centred with margin:auto and symmetric padding, so its centre is the viewport's. */
-.cfbsched .wrap > :not(.col) { width: min(1100px, calc(100vw - 40px)); position: relative; left: 50%; transform: translateX(-50%); }
-.cfbsched .wrap > .tablewrap { overflow-x: auto; }
+.cfbsched .breakout { width: min(1100px, calc(100vw - 40px)); position: relative; left: 50%; transform: translateX(-50%); }
+.cfbsched .tablewrap.breakout { overflow-x: auto; }
 .cfbsched .graphs .tip { transform: none; }
