@@ -96,6 +96,27 @@ And what the calendar itself costs. Every designed game has a week; the as-playe
 
 The first is the price of an honest tier gap. When the power team hosts every cross-tier game, "the power team is better" and "the home team gets a few points" are the same regression direction and a rating cannot separate them; balanced hosting is what makes the design's tier advantage real rather than analytic. It also means roughly one home game in four across the non-conference slate given back to Group of Five programs that currently sell it. The second is the price of reserving a week in November for everyone at once: a conference's own schedule has to flex around it, and a handful of teams a season idle in week 1 or on rivalry weekend when their league's arithmetic leaves no other way.
 
+## What the fourth game is worth
+
+The design does two things at once: it rearranges the non-conference games the sport already plays, and it replaces each team's FCS game with a fourth FBS opponent. To see what the second is worth on its own, the calendar was designed a second time with **each team's real FCS games kept**, reserved out of its slots, so that the designed slate has exactly as many FBS non-conference games as the real one. The three schedules are then scored the same way, with the real schedule and the FCS-kept design playing their FCS games against an opponent of known average strength (the level the real FBS-versus-FCS margins imply, about 26 points below an average FBS team, with the spread of FCS strength added to the noise).
+
+<div class="cfbsched">
+<div class="tablewrap breakout">
+<table><thead><tr><th></th><th class="num">FBS non-conference games</th><th class="num">FCS games</th><th class="num">gap SE, from the graph (pts)</th><th class="num">tier gap SE (pts)</th><th class="num">recovered gap error, end of season (pts)</th><th class="num">the same, 2021–24 only</th><th class="num">recovered tier-gap error (pts)</th><th class="num">non-conference miles</th><th class="num">power team hosts</th></tr></thead><tbody><tr><td>the real schedule</td><td class="num">207</td><td class="num">101</td><td class="num">4.00</td><td class="num">1.60</td><td class="num">2.84</td><td class="num">3.00</td><td class="num">1.78</td><td class="num">146k</td><td class="num">76%</td></tr><tr><td>design, FCS game kept</td><td class="num">210</td><td class="num">101</td><td class="num">3.91</td><td class="num">1.54</td><td class="num">2.74</td><td class="num">2.89</td><td class="num">1.50</td><td class="num better">125k</td><td class="num">53%</td></tr><tr><td>design, FCS game replaced</td><td class="num">253</td><td class="num">0</td><td class="num better">3.51</td><td class="num better">1.34</td><td class="num better">2.71</td><td class="num">2.80</td><td class="num better">1.47</td><td class="num">148k</td><td class="num">52%</td></tr></tbody></table>
+</div>
+</div>
+
+<div class="cfbsched">
+<figure class="breakout">
+<img alt="Three line charts by season comparing the real schedule, the design that keeps the FCS game and the design that replaces it: the analytic conference-gap standard error, the recovered conference-gap error and the recovered tier-gap error." src="https://bwingert89.github.io/cfbschedules/fourth_game.png"/>
+<figcaption>By season: the conference-gap standard error computed from the schedule graph alone, and the errors a simulated rating actually recovers at the end of the season (last season's ratings as the prior, FCS games counted where a schedule has them). The fourth game moves the first panel a great deal and the other two very little.</figcaption>
+</figure>
+</div>
+
+**Two yardsticks, and they disagree.** The first column is the standard error from the graph alone, the number the optimiser minimises; an FCS game is an edge to a team outside the FBS graph, so it contributes nothing there, and replacing it looks like pure gain: the fourth game accounts for 0.40 of the 0.50 points the design takes off the real schedule. The recovered error is what a rating system sees, and it learns from the FCS game: an observation against an opponent of known level, at a little more noise than an FBS game, is worth about nine-tenths as much. On that yardstick the fourth game is worth 0.03 of the design's 0.13 points pooled over 2004 to 2025, a tenth of a point in 2021 to 2024 and nothing before 2015.
+
+**The rules do the measuring.** With the same FBS games as reality, the FCS-kept design still beats it at the end of every split, cuts the error on the power-versus-Group of Five gap from 1.78 to 1.50 points, covers 95% of conference pairs against 90%, and travels 125k miles against 146k. That travel saving is the one the fourth game spends. So the honest claim is not that a fourth FBS game measures the sport better; it is that the reserved-week calendar, the Swiss week, balanced hosting and a regional early block, measures the sport better than the status quo with the games the sport already plays. Trading the FCS game for an FBS one buys connectivity on paper and marquee games in practice, not much precision, which turns the FCS game from a cost of the design into a choice: the programs that depend on that revenue can keep it, and most of the gain can be kept too.
+
 ## One team's slate
 
 <div class="cfbsched">
@@ -176,7 +197,7 @@ Why does a slate against the Group of Five improve how a league compares with th
 
 ## What this does not claim
 
-- **The FCS game is priced at zero, and credited as information.** Today it funds FCS athletic departments, and the design assumes those programs are made whole under a central calendar; nothing here says how. In the recovery comparison the real schedule keeps it, simulated against one FCS opponent per season at the strength the real margins imply (about 26 points below an average FBS team, with the spread of FCS strength added to the noise). An earlier version of this page scored the real schedule on its FBS games alone and overstated the design's margin by about a quarter of a point.
+- **The FCS game is a choice, not a cost.** The main design replaces it and prices the replacement at zero; the control above keeps it and shows that most of the gain survives. In the recovery comparison every schedule that has FCS games plays them, against one FCS opponent per season at the strength the real margins imply. An earlier version of this page scored the real schedule on its FBS games alone and overstated the design's margin by about a quarter of a point.
 - **The calendar is a 2%-gap solution with a time limit**, not an optimum, and five seasons before 2013, with seven-, eight- and nine-game leagues side by side, needed conference games to move further than four weeks or the bye window cut to two.
 - **The Swiss pairing's rating band (4 points) is a choice, not tuned**, as is the rule that two equal peers are split by distance.
 - **Difficulty and the top-25 count use season-final SP+**, which no scheduler has in advance. The recovery study and the Swiss draw use only what a scheduler would have: last season's ratings and the games played so far.

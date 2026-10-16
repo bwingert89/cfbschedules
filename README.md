@@ -16,6 +16,7 @@ Served by GitHub Pages at https://bwingert89.github.io/cfbschedules/
 | `graphs.json` | node positions (spring layout from a spectral start) and edge lists for the real schedule and the calendar, per season |
 | `logos/<id>.png` | team crests, 64 px, keyed by CollegeFootballData team id |
 | `networks.png` | the static overview of 2014, 2019 and 2024, real schedule above and calendar below |
+| `fourth_game.png` | the three-way comparison by season: real schedule, design with the FCS game kept, design with it replaced |
 | `bear/post.html` | the page body for a Bear Blog post |
 | `bear/style.css` | the page's CSS scoped under `.cfbsched`, for Bear's custom CSS |
 | `bear/footer.js` | the script for Bear's footer directive; it loads the data from this site and is inert on other pages |
